@@ -5,7 +5,7 @@ A set of simple Python scripts to scrape emojis and stickers from Discord server
 
 I took inspiration from [Tiemen's Discord Emoji Downloader](https://github.com/ThaTiemsz/Discord-Emoji-Downloader).
 
-## How to use
+## Running
 - Edit `emoji_scraper.py` and add your Discord token there (Invalid tokens usually cause error code 401).
 - You can also change your output directory in the scripts.
 - Run `python emoji_scraper.py {arg1}` where `{arg1}` can either be:
