@@ -53,10 +53,10 @@ if not os.path.exists(f"{output_path}/emojis"):
 print("Scraping emojis")
 for x in range(len(data["emojis"])):
     if (data["emojis"][x]["animated"] == True):
-        download_url = f"{emoji_url}/{data['emojis'][x]['id']}.gif"
+        download_url = f"{emoji_url}/{data['emojis'][x]['id']}.gif?size=4096"
         filename = f"{data['emojis'][x]['name']}.gif"
     else:
-        download_url = f"{emoji_url}/{data['emojis'][x]['id']}.webp"
+        download_url = f"{emoji_url}/{data['emojis'][x]['id']}.webp?size=4096"
         filename = f"{data['emojis'][x]['name']}.webp"
 
     image_response = requests.get(download_url, stream=True)
@@ -75,7 +75,7 @@ print("Scraping stickers")
 for x in range(len(data["stickers"])):
     # doesnt matter if its tagged as animated or not because discord stickers are
     # animated PNGs
-    download_url = f"{sticker_url}/{data['stickers'][x]['id']}.png"
+    download_url = f"{sticker_url}/{data['stickers'][x]['id']}.png?size=4096"
     filename = f"{data['stickers'][x]['name']}.png"
     
     image_response = requests.get(download_url, stream=True)
