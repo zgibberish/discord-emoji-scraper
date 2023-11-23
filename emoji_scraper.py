@@ -13,7 +13,7 @@ serer_url = "https://discordapp.com/api/v6/guilds"
 emoji_url= "https://cdn.discordapp.com/emojis"
 sticker_url = "https://media.discordapp.net/stickers"
 
-# Get json data of server and set up variables
+# Get json data and set up variables
 server_id = ""
 server_name = ""
 if (sys.argv[1] == "fromjson"):
@@ -35,7 +35,6 @@ output_path += f"/{server_id}"
 if not os.path.exists(output_path):
     os.makedirs(output_path)
 
-# Print out server info
 print("You are scraping from:")
 print(f"  id: {server_id}")
 print(f"  name: {server_name}")
@@ -73,8 +72,6 @@ if not os.path.exists(f"{output_path}/stickers"):
     os.makedirs(f"{output_path}/stickers")
 print("Scraping stickers")
 for x in range(len(data["stickers"])):
-    # doesnt matter if its tagged as animated or not because discord stickers are
-    # animated PNGs
     download_url = f"{sticker_url}/{data['stickers'][x]['id']}.png?size=4096"
     filename = f"{data['stickers'][x]['name']}.png"
     
@@ -87,5 +84,4 @@ for x in range(len(data["stickers"])):
     #print(f"[{x+1}/{len(data['stickers'])}] Downloaded: {filename}, {data['stickers'][x]['id']}, {download_url}")
     print(f"[{x+1}/{len(data['stickers'])}] Downloaded: {data['stickers'][x]['id']}, {filename}, {download_url}")
 
-# Summary
 print(f"Found and downloaded {len(data['emojis'])} emojis and {len(data['stickers'])} stickers from {server_id} ({server_name}).")
