@@ -4,8 +4,14 @@ import sys
 import shutil
 import os
 
-# Change your token here
-header = {"Authorization": ""}
+# token is read from token.txt
+if not os.path.isfile("./token.txt"):
+    with open("token.txt", "w"): pass
+    sys.exit("token.txt not found, file created. Please write your Discord token in that file and run the script again.")
+with open("token.txt", "r") as tokentxt:
+    token = tokentxt.readline().replace('\n', '').strip()
+    
+header = {"Authorization": token}
 # You can change the output directory here
 output_path = "./output"
 
@@ -53,10 +59,10 @@ if not os.path.exists(f"{output_path}/emojis"):
 print("Scraping emojis")
 for x in range(len(data["emojis"])):
     if (data["emojis"][x]["animated"] == True):
-        download_url = f"{emoji_url}/{data['emojis'][x]['id']}.gif?size=4096"
+        download_url = f"{emoji_url}/{data['emojis'][x]['id']}.gif?size=4096&quality=lossless"
         filename = f"{data['emojis'][x]['name']}.gif"
     else:
-        download_url = f"{emoji_url}/{data['emojis'][x]['id']}.webp?size=4096"
+        download_url = f"{emoji_url}/{data['emojis'][x]['id']}.webp?size=4096&quality=lossless"
         filename = f"{data['emojis'][x]['name']}.webp"
     
     # make sure file name is valid
@@ -76,7 +82,7 @@ if not os.path.exists(f"{output_path}/stickers"):
     os.makedirs(f"{output_path}/stickers")
 print("Scraping stickers")
 for x in range(len(data["stickers"])):
-    download_url = f"{sticker_url}/{data['stickers'][x]['id']}.png?size=4096"
+    download_url = f"{sticker_url}/{data['stickers'][x]['id']}.png?size=4096&quality=lossless"
     filename = f"{data['stickers'][x]['name']}.png"
     
     # make sure file name is valid
