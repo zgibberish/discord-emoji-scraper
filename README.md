@@ -1,2 +1,2 @@
 # discord-emoji-scraper
-Simple Python script to download stickers and emojis from Discord servers for archiving
+A set of Python scripts to help you scrape emojis and stickers from Discord servers.
