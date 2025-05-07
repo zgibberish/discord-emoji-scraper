@@ -26,3 +26,25 @@ I believe these are the file formats coming directly from Discord without any co
 
 ## Browsing downloaded assets
 Downloaded assets are stored inside folders with their corresponding server ID, since server names can contain characters that I was too lazy to deal with, I decided to write them in text files, placed in the same folder. You can use the `list_output.py` script to list the downloaded directories with their names along side. If you have changed the output directory in the main `emoji_scraper.py` script, you might want to change it in `list_output.py` too so it can find the correct location.
+
+If you have GNU find, xargs and [bat](https://github.com/sharkdp/bat), this one liner should also do the job (replace {OUTPUT DIRECTORY} with your output directory, E.g. `output`).
+```sh
+find {OUTPUT DIRECTORY}/*/name.txt | xargs -I x bat x --style header-filename
+```
+
+Example
+```console
+> find output/*/name.txt | xargs -I x bat x --style header-filename
+File: output/1063291660496293928/name.txt
+ralsei's sillies
+File: output/256926147827335170/name.txt
+OneShot ("Why are 10 Alulas Stored in this Room?")
+File: output/283467363729408000/name.txt
+Hollow Knight
+File: output/409719543984947201/name.txt
+Finji
+File: output/89798994816946176/name.txt
+Home of Emotional Pandas
+File: output/950256523869839400/name.txt
+Cupcord
+```
