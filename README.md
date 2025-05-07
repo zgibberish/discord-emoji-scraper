@@ -1,6 +1,6 @@
 # Scraping data using Discord's API is against their TOS, use this at your own risk.
 
-# discord-emoji-scraper
+# Discord Emoji Scraper
 A set of simple Python scripts to scrape emojis and stickers from Discord servers.
 
 I took inspiration from [Tiemen's Discord Emoji Downloader](https://github.com/ThaTiemsz/Discord-Emoji-Downloader).
