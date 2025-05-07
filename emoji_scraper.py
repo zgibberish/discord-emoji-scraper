@@ -12,6 +12,7 @@ output_path = "./output"
 serer_url = "https://discordapp.com/api/v6/guilds"
 emoji_url= "https://cdn.discordapp.com/emojis"
 sticker_url = "https://media.discordapp.net/stickers"
+forbidden_characters = "\/:*?<>|"
 
 # Get json data and set up variables
 server_id = ""
@@ -57,6 +58,9 @@ for x in range(len(data["emojis"])):
     else:
         download_url = f"{emoji_url}/{data['emojis'][x]['id']}.webp?size=4096"
         filename = f"{data['emojis'][x]['name']}.webp"
+    
+    # make sure file name is valid
+    filename = "".join([x for x in filename if x not in forbidden_characters])
 
     image_response = requests.get(download_url, stream=True)
     if not image_response.status_code == 200:
@@ -74,6 +78,9 @@ print("Scraping stickers")
 for x in range(len(data["stickers"])):
     download_url = f"{sticker_url}/{data['stickers'][x]['id']}.png?size=4096"
     filename = f"{data['stickers'][x]['name']}.png"
+    
+    # make sure file name is valid
+    filename = "".join([x for x in filename if x not in forbidden_characters])
     
     image_response = requests.get(download_url, stream=True)
     if not image_response.status_code == 200:
